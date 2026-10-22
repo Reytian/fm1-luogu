@@ -30,8 +30,9 @@ percussion by playing along, or sing an aria with its own band. Everything runs 
   strike its key, and moves straight on when you strike the next one early; the 字谱 turns from dark to yellow as
   you go, and in a 板式 the 京胡's 过门 starts only once you have played the lead-in right.
 
-**Status: no release yet; build it from source.** The firmware builds for the device (an image of 576 KB) and runs
-on an FM-1; most of the testing has been in fm1-base's host simulator, which runs the same code. The audio load is estimated from
+**Status: [0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v0.1) is the first release** (an image of 533 KB,
+without the 唱段: see below). It runs on an FM-1; most of the testing has been in fm1-base's host simulator, which
+runs the same code. The audio load is estimated from
 instruction counts at no more than 35 % of a core in its busiest 2.9 ms block, under the 60 % budget; it hasn't been
 measured on the chip.
 
@@ -86,7 +87,9 @@ LUOGU is an fm1-base firmware: fm1-base is a git submodule in `base/`.
     tests/run_tests.sh            # every test (needs only a C compiler and Python with Pillow)
 
 The build needs a Python 3 with Pillow (`PYTHON=...` picks one), the JieLi toolchain and JieLi's AC79 SDK. For
-details, see fm1-base's README. To install a build: `python3 base/tools/fm1_install.py app/build/luogu.fwsc`.
+details, see fm1-base's README. To install a build: `python3 base/tools/fm1_install.py app/build/luogu.fwsc`. To
+install the release, download `luogu-0.1.fwsc` from [Releases](https://github.com/Reytian/fm1-luogu/releases) and
+run `python3 base/tools/fm1_install.py luogu-0.1.fwsc` in a clone (the installer needs mido with python-rtmidi).
 Installing is at your own risk; M-VAVE's own firmware can be put back the same way.
 
 | Path | What |
@@ -139,8 +142,13 @@ M-VAVE and FM-1 are trademarks of their owners. LUOGU is not affiliated with M-V
 - **跟练**（FX）：音乐跟着你走。锣鼓经的每个字等你打对了才往下走，打对一个字变黄一个；你提前打对下一个字，音乐马上
   跳过去接着走。停着的时候打第一个字就开始。唱腔里开唱的锣鼓经打对了，京胡才进来拉过门。
 
-**现状：还没有发布版，需要自己从源码编译。** 固件能编出来（576 KB），已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的
-是同一份代码。音频负载按指令数估算，最忙的 2.9 毫秒音频块不超过一个核的 35%（预算 60%），还没在芯片上实测。
+**现状：已发布 [0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v0.1)**（固件 533 KB，不含唱段，原因见上文的
+Licence 一节）。已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的是同一份代码。音频负载按指令数
+估算，最忙的 2.9 毫秒音频块不超过一个核的 35%（预算 60%），还没在芯片上实测。
+
+**安装**：从 [Releases](https://github.com/Reytian/fm1-luogu/releases) 下载 `luogu-0.1.fwsc`，USB 连上 FM-1，在本仓库的
+克隆里运行 `python3 base/tools/fm1_install.py luogu-0.1.fwsc`（要先装 mido 和 python-rtmidi）。风险自负；M-VAVE
+原厂固件也能用同样的方法刷回去。
 
 锣鼓经和过门都是传统的，取自打击乐简谱、教材和过门谱，并且相互核对过（来源见 [CREDITS.md](CREDITS.md)）。64 套
 锣鼓经里 39 套有两种以上独立记谱互相印证（`data/luogu.txt` 里标 ✅），18 套只有一个来源或细节未定（⚠️），7 套存疑
