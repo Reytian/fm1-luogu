@@ -927,7 +927,7 @@ static void input(void)
             } else if (k == EN_ALGO) {
                 choose((int)e);                  /* (a quick turn skips ahead) */
             } else {                             /* SELECT chooses nothing: one knob each, it says which */
-                app_say("请用 ALGO", ui.page == PG_SING ? "PRESET 板式/唱段" : "PRESET 换类");
+                app_say("请用 ALGO", ui.page == PG_LUOGU ? "PRESET 换类" : lg_ntq() ? "PRESET 板式/唱段" : "");
             }
         } else if (k == EN_PRESET) {             /* the group: the kind of pattern; the 板式 or the 唱段 */
             if (ui.page == PG_LUOGU)
