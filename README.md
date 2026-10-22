@@ -20,6 +20,9 @@ percussion by playing along, or sing an aria with its own band. Everything runs 
   反二黄): the 锣鼓 leads in, the 京胡 plays the 大过门 (its 简谱 shown note by note), then the 板 keeps time while
   you sing. Press SEQ at the end of a line for the 小过门; if you play the line's last note (its 落音) on the keys
   first, LUOGU picks the 过门 that follows that note. PLAY ends it with the closing 锣鼓.
+- **Whole arias (唱段).** Five arias with their 京胡 托腔, from the Jingju Music Scores Collection: 苏三离了洪洞县,
+  我本是卧龙岗散淡的人, 一轮明月照窗前, 当日里好风光忽觉转变, 深宫无处不飞花. The 京胡 plays you through the whole
+  aria and the lyrics light up syllable by syllable (non-commercial use only: see the licence below).
 - **京胡, 京二胡 and 月琴.** The 京二胡 doubles the 京胡 an octave down and the 月琴 plucks the main notes; either can be
   switched off. The 调门 (key) is set per 声腔: 西皮, 二黄, 反二黄, 四平调, 南梆子.
 - **The keys are the band.** The keys play the strokes, each player's laid out the way their hands go (the 鼓师's 板
@@ -30,8 +33,8 @@ percussion by playing along, or sing an aria with its own band. Everything runs 
   strike its key, and moves straight on when you strike the next one early; the 字谱 turns from dark to yellow as
   you go, and in a 板式 the 京胡's 过门 starts only once you have played the lead-in right.
 
-**Status: [0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v0.1) is the first release** (an image of 533 KB,
-without the 唱段: see below). It runs on an FM-1; most of the testing has been in fm1-base's host simulator, which
+**Status: [0.2](https://github.com/Reytian/fm1-luogu/releases/tag/v0.2) is the current release** (an image of
+576 KB). It runs on an FM-1; most of the testing has been in fm1-base's host simulator, which
 runs the same code. The audio load is estimated from
 instruction counts at no more than 35 % of a core in its busiest 2.9 ms block, under the 60 % budget; it hasn't been
 measured on the chip.
@@ -88,8 +91,8 @@ LUOGU is an fm1-base firmware: fm1-base is a git submodule in `base/`.
 
 The build needs a Python 3 with Pillow (`PYTHON=...` picks one), the JieLi toolchain and JieLi's AC79 SDK. For
 details, see fm1-base's README. To install a build: `python3 base/tools/fm1_install.py app/build/luogu.fwsc`. To
-install the release, download `luogu-0.1.fwsc` from [Releases](https://github.com/Reytian/fm1-luogu/releases) and
-run `python3 base/tools/fm1_install.py luogu-0.1.fwsc` in a clone (the installer needs mido with python-rtmidi).
+install the release, download `luogu-0.2.fwsc` from [Releases](https://github.com/Reytian/fm1-luogu/releases) and
+run `python3 base/tools/fm1_install.py luogu-0.2.fwsc` in a clone (the installer needs mido with python-rtmidi).
 Installing is at your own risk; M-VAVE's own firmware can be put back the same way.
 
 | Path | What |
@@ -99,7 +102,7 @@ Installing is at your own risk; M-VAVE's own firmware can be put back the same w
 | `app/dsp/lg.c`, `lg.h` | The engine: the transport, the 板式's flow, the 过门's notes and ornaments, the practice's judging, the mix |
 | `app/dsp/perc.c`, `perc_tab.h` | The percussion: recorded strokes played as voices; the 大锣's modes with their sinking glide, noise bands, the contact (the tables written by `tools/perc_fit.py`) |
 | `app/dsp/samp_tab.h` | The recorded strokes (CC BY 4.0), written by `tools/samples.py` from the BOPI dataset |
-| `tools/tq_data.py` | 唱段: a few arias' 京胡 parts and lyrics from the Jingju Music Scores Collection, into `app/dsp/tq_data.h` — the owner's own, not in this repository (see below); without it LUOGU has no 唱段 |
+| `tools/tq_data.py` | 唱段: five arias' 京胡 parts and lyrics from the Jingju Music Scores Collection, into `app/dsp/tq_data.h` (CC BY-NC-ND 4.0: see below) |
 | `app/dsp/hu.c`, `hu_tab.h` | The 京胡 and 京二胡 (bowed: a sawtooth through a fitted body) and the 月琴 (plucked strings) |
 | `app/dsp/lg_data.h` | The patterns, 过门 and 板式, written by `tools/lg_data.py` from `data/luogu.txt` and `data/guomen.txt` |
 | `data/` | The music, in a plain text notation described at the top of each file |
@@ -108,9 +111,11 @@ Installing is at your own risk; M-VAVE's own firmware can be put back the same w
 
 ## Licence and credits
 
-The 唱段 (whole arias with their 京胡 托腔) are not part of LUOGU: their scores are the Jingju Music Scores
-Collection's (CC BY-NC-ND 4.0), set from printed books that are their editors'. `tools/tq_data.py` turns a local copy
-into `app/dsp/tq_data.h` for your own FM-1; that file is not committed and must not be shared.
+The 唱段's scores are the Jingju Music Scores Collection's, set from printed books that are their editors'.
+`app/dsp/tq_data.h` holds them converted to a form to play from, their notes unchanged, so it is under their licence,
+**CC BY-NC-ND 4.0** (`LICENSES/`), not the MPL: LUOGU's firmware with the 唱段 in it may be shared, but not sold or
+used commercially. A 彩蛋 carries two sung words from a recording of 郭德纲 and 于谦's 《黄鹤楼》 (德云社,
+`app/dsp/guo_snd.h`): they belong to their owners and are not under LUOGU's licence.
 
 LUOGU is by Reytian, under the MPL-2.0 (see [LICENSE](LICENSE)). Built on
 [fm1-base](https://github.com/charlesvestal/fm1-base) by Charles Vestal and
@@ -134,6 +139,9 @@ M-VAVE and FM-1 are trademarks of their owners. LUOGU is not affiliated with M-V
 - **自拉自唱**：西皮原板、二黄原板、慢板、快三眼、二六、流水、快板、摇板、导板、散板、南梆子、四平调、反二黄共
   18 种板式。锣鼓开唱，京胡拉大过门（屏幕上逐音显示简谱），然后板给你打着拍子，你来唱。一句唱完按 SEQ 起小过门；
   按之前先在键盘上弹出这句的落音，LUOGU 就接对应落音的过门。按 PLAY 收住，锣鼓收尾。
+- **唱段**：五段完整的唱段，京胡托腔一路托着你唱到底，唱词逐字点亮：苏三离了洪洞县、我本是卧龙岗散淡的人、
+  一轮明月照窗前、当日里好风光忽觉转变、深宫无处不飞花。谱子来自 Jingju Music Scores Collection（CC BY-NC-ND
+  4.0），只限非商业使用。
 - **京胡、京二胡、月琴**：京二胡低八度托着京胡，月琴弹主干音，都可以关掉。调门按声腔分别设：西皮、二黄、反二黄、
   四平调、南梆子。
 - **键盘就是乐队**：键盘可以当锣鼓打，每位乐手的键按他真实的左右手排（鼓师左手板、右手楗子；锣是左手按、右手敲），
@@ -142,12 +150,11 @@ M-VAVE and FM-1 are trademarks of their owners. LUOGU is not affiliated with M-V
 - **跟练**（FX）：音乐跟着你走。锣鼓经的每个字等你打对了才往下走，打对一个字变黄一个；你提前打对下一个字，音乐马上
   跳过去接着走。停着的时候打第一个字就开始。唱腔里开唱的锣鼓经打对了，京胡才进来拉过门。
 
-**现状：已发布 [0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v0.1)**（固件 533 KB，不含唱段，原因见上文的
-Licence 一节）。已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的是同一份代码。音频负载按指令数
+**现状：已发布 [0.2](https://github.com/Reytian/fm1-luogu/releases/tag/v0.2)**（固件 576 KB）。已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的是同一份代码。音频负载按指令数
 估算，最忙的 2.9 毫秒音频块不超过一个核的 35%（预算 60%），还没在芯片上实测。
 
-**安装**：从 [Releases](https://github.com/Reytian/fm1-luogu/releases) 下载 `luogu-0.1.fwsc`，USB 连上 FM-1，在本仓库的
-克隆里运行 `python3 base/tools/fm1_install.py luogu-0.1.fwsc`（要先装 mido 和 python-rtmidi）。风险自负；M-VAVE
+**安装**：从 [Releases](https://github.com/Reytian/fm1-luogu/releases) 下载 `luogu-0.2.fwsc`，USB 连上 FM-1，在本仓库的
+克隆里运行 `python3 base/tools/fm1_install.py luogu-0.2.fwsc`（要先装 mido 和 python-rtmidi）。风险自负；M-VAVE
 原厂固件也能用同样的方法刷回去。
 
 锣鼓经和过门都是传统的，取自打击乐简谱、教材和过门谱，并且相互核对过（来源见 [CREDITS.md](CREDITS.md)）。64 套

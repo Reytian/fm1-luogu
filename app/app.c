@@ -540,8 +540,8 @@ static void kara_want(char *t, const char *pre)
 
 /* ------------------------------------------------------------------ the 郭德纲模式, a 彩蛋: on the 唱腔 page with
  * 西皮慢板, LFO twice. 郭德纲 and 于谦 as they stood in their 《黄鹤楼》 take the title and the body (guo_pic.h), F5 and
- * G5 sing his 包 and 肉包 from it (guo_snd.h), and a bubble over his cap says which. Both are the owner's own
- * (tools/guo.py): without them there is no 彩蛋 */
+ * G5 sing his 包 and 肉包 from it (guo_snd.h), and a bubble over his cap says which. Both made by tools/guo.py (the
+ * clips are 德云社's, not under LUOGU's licence: CREDITS.md); without them there is no 彩蛋 */
 #if __has_include("guo_pic.h")
 #include "guo_pic.h"
 #endif

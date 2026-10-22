@@ -115,9 +115,8 @@ LUOGU 是 M-VAVE FM-1 上的一个固件：一台能打京剧锣鼓、能拉京�
 
 唱腔页除了板式，还有几段完整的唱段：京胡从过门开始，一路托着你唱到底，唱词一句一句显示。
 
-> **发布版里没有唱段。** 唱段的谱子来自 Jingju Music Scores Collection（CC BY-NC-ND），不能随固件分发。要用的话，
-> 得自己准备一份这个谱集，用 `tools/tq_data.py` 生成 `app/dsp/tq_data.h`，再自己编译固件（见 README）。没有它，
-> 唱腔页只有板式，转 PRESET 不起作用。
+> 唱段的谱子来自 Jingju Music Scores Collection，按它的许可（CC BY-NC-ND 4.0）只限非商业使用：带唱段的固件可以
+> 转给别人，但不能卖，也不能用于商业用途。
 
 - **选唱段**：在唱腔页转 **PRESET**，在“板式”和“唱段”两组之间切换；再转 **ALGO** 在这一组里选哪一段。现在有五段：
 

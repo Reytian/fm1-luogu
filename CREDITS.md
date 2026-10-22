@@ -24,15 +24,24 @@ TakWolf (<https://github.com/TakWolf/fusion-pixel-font>), whose Chinese comes fr
 (<https://github.com/TakWolf/ark-pixel-font>); both SIL OFL 1.1 (`LICENSES/OFL-1.1-FusionPixel.txt`,
 `LICENSES/OFL-1.1-ArkPixel.txt`). The rest of the logo is LUOGU's own.
 
-## The 唱段 (not in this repository)
+## The 唱段
 
-A build made with `tools/tq_data.py` carries a few arias' 京胡 parts and lyrics from the **Jingju Music Scores
-Collection**: Rafael Caro Repetto and Xavier Serra, CompMusic, Music Technology Group, Universitat Pompeu Fabra
-(2017; <https://doi.org/10.5281/zenodo.1285613>; the scores at <https://github.com/Rafael-Caro/Jingju-Score-Analysis>),
-CC BY-NC-ND 4.0, each score as set from its printed source: 《京剧曲谱集成》 (上海文艺出版社) and 曹宝荣 (编著),
-《京剧唱腔板式解读》 (人民音乐出版社, 2010). Their tempos were measured on the **Jingju a Cappella Recordings
-Collection**'s 京胡 tracks of the same scores (CC BY 4.0) where it has them. The lyrics are drawn from Fusion Pixel
-Font's 12 px (above). Not for sharing: the header it writes stays out of LUOGU's sources.
+`app/dsp/tq_data.h` (written by `tools/tq_data.py`) carries five arias' 京胡 parts and lyrics from the **Jingju
+Music Scores Collection**: Rafael Caro Repetto and Xavier Serra, CompMusic, Music Technology Group, Universitat
+Pompeu Fabra (2017; <https://doi.org/10.5281/zenodo.1285613>; the scores at
+<https://github.com/Rafael-Caro/Jingju-Score-Analysis>), CC BY-NC-ND 4.0, each score as set from its printed source:
+《京剧曲谱集成》 (上海文艺出版社) and 曹宝荣 (编著), 《京剧唱腔板式解读》 (人民音乐出版社, 2010). The scores are converted
+to a compact form to play from, their notes unchanged (ties joined), so that file is under **CC BY-NC-ND 4.0** as they
+are, not under LUOGU's MPL: non-commercial use only (`LICENSES/CC-BY-NC-ND-4.0.txt`). Their tempos, LUOGU's, were
+measured on the **Jingju a Cappella Recordings Collection**'s 京胡 tracks of the same scores (CC BY 4.0) where it has
+them. The lyrics are drawn from Fusion Pixel Font's 12 px (above).
+
+## The 彩蛋
+
+`app/dsp/guo_snd.h` holds two sung words, 包 and 肉包, cut by `tools/guo.py` from a recording of **郭德纲 and 于谦's
+相声 《黄鹤楼》 (德云社)**. They belong to their owners and are not under LUOGU's licence. The picture with them
+(`app/guo_pic.h`, the two as they stood in that show) is LUOGU's own drawing, MPL-2.0; its bubble's 包 and 肉 are from
+Fusion Pixel Font's 12 px.
 
 ## The sounds
 

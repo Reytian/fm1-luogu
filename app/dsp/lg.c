@@ -6,13 +6,13 @@
 #include "fastmath.h"
 #include "lg_data.h"                            /* LG_SYL, LG_PAT, LG_GM, LG_BS (tools/lg_data.py) */
 #if __has_include("tq_data.h")
-#include "tq_data.h"                            /* the 唱段 (tools/tq_data.py: the owner's own, not LUOGU's) */
+#include "tq_data.h"                            /* the 唱段 (tools/tq_data.py; CC BY-NC-ND 4.0, not LUOGU's MPL) */
 #endif
 #ifndef TQ_N
 #define TQ_N 0
 #endif
 #if __has_include("guo_snd.h")
-#include "guo_snd.h"                            /* the 彩蛋's 包 and 肉包 (tools/guo.py: the owner's own, not LUOGU's) */
+#include "guo_snd.h"                            /* the 彩蛋's 包 and 肉包 (tools/guo.py; 德云社's, not LUOGU's) */
 #endif
 #ifndef GUO_NSND
 #define GUO_NSND 0

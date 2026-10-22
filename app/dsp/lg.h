@@ -149,7 +149,7 @@ void lg_service(uint32_t now_ms);       /* main loop, every pass: the practice's
 void lg_player_hit(int inst, uint32_t ms);   /* main loop: the player struck their instrument (practice) */
 
 /* ------------------------------------------------------------------ 唱段: arias with their 托腔 (tq_data.h, made by
- * tools/tq_data.py from the Jingju Music Scores Collection; the owner's own: none in a build without it) */
+ * tools/tq_data.py from the Jingju Music Scores Collection, under its CC BY-NC-ND 4.0; none in a build without it) */
 typedef struct {                        /* a section of a 唱段: one 板式 */
     const char *bs;                     /* LUOGU's 板式, by name ("西皮原板"): its tempo, its 锣鼓 */
     uint8_t meter, pick;                /* beats a bar; a pickup: beats before its first 板 (the 京胡 in on a 眼) */
@@ -177,8 +177,8 @@ const lg_tq_syl_t *lg_tq_syl(int i);
 const uint8_t *lg_tq_glyph(int i);      /* a character: 12 x 12, a bit a pixel, rows top to bottom (18 bytes) */
 int lg_tq_glyph_of(uint32_t code);      /* a character's glyph (by its code point), -1 none */
 
-/* the 彩蛋 (郭德纲模式): 郭德纲's sung 包 and 肉包 from his and 于谦's 《黄鹤楼》 (guo_snd.h, made by tools/guo.py; the
- * owner's own: none in a build without it) */
+/* the 彩蛋 (郭德纲模式): 郭德纲's sung 包 and 肉包 from his and 于谦's 《黄鹤楼》 (guo_snd.h, made by tools/guo.py; 德云社's
+ * recording, not under LUOGU's licence; none in a build without it) */
 int lg_nsay(void);
 
 /* ------------------------------------------------------------------ what is playing (the screen, the tests) */
