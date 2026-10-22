@@ -1,0 +1,552 @@
+# LUOGU's 锣鼓经 (tools/lg_data.py), from the research in ~/fm1/data/opera/research/luogu_research.md: the syllables
+# from 中国戏曲研究院's 打击乐简谱 key, cross-checked; every pattern's 字谱 compared across the printed and transcribed
+# sources there (穆文义《京剧打击乐技巧与练习》2007 "M", the 中国戏曲研究院 system "D", and others), its normalised line
+# copied. conf: ✅ two or more sources agree, ⚠️ partly, ❓ one source (待核).
+# A pattern's 起 plays once, its 中 again and again (reps times, unless cut sooner), its 收 once; ~ after a syllable
+# is a roll (a cymbal tremolo) for its length. Tempos: the measured ones are marked; the others are estimates.
+
+# ------------------------------------------------------------------------------------------------- the syllables
+@syl 大 da 鼓:110            # 鼓: the right stick, heavy
+@syl 八 ba 鼓.双:115         # the left stick heavy, or both
+@syl 崩 beng 鼓.双:122       # both sticks, heavy
+@syl 多 duo 鼓.轻:70         # one stick, light
+@syl 罗 luo 鼓.轻:62         # (多罗: a little roll, written as two strokes)
+@syl 嘟 du 鼓.滚:85          # a roll
+@syl 拉 la 鼓:92             # a roll's last stroke
+@syl 龙 long 鼓:105
+@syl 冬 dong 鼓:96
+@syl 扎 za 板:118            # 板 (檀板), heavy
+@syl 衣 yi 板.轻:84          # 板, in the drum's phrases
+@syl 仓 cang 大锣:118 铙钹:100 小锣:86
+@syl 匡 kuang 大锣:118 铙钹:92 小锣:80     # 穆文义's scores: the cymbals too (CompMusic's 闪锤, 慢长锤)
+@syl 顷 qing 大锣.轻:78 铙钹.轻:62
+@syl 空 kong 大锣.轻:72
+@syl 台 tai 小锣:108
+@syl 令 ling 小锣.轻:72
+@syl 匝 za 小锣.闷:92
+@syl 才 cai 铙钹:102 小锣:86
+@syl 七 qi 铙钹:96
+@syl 扑 pu 铙钹.闷:98
+@syl 乙 yi                   # a rest (in the gongs' phrases)
+@syl - -                     # held
+
+@cat 开唱 收腔 念白散垫 上下场 情绪 武打 板眼
+
+# ------------------------------------------------------------------------------------------------- 开唱锣鼓
+@pattern 导板头 dao-ban-tou
+  cat 开唱
+  meter 2
+  bpm 50 36 70
+  accel 1.0 0.8
+  use 导板的入头 (西皮, 二黄): 武家坡, 借东风. 慢而有弹性 (实测约50)
+  conf ✅ M B C E F
+  jing [起] 乙:4 大:2 台:2 | 仓:2 嘟~:2 才:2 台:2 | [收] 仓:4 仓:4 | 台:2 大:2 乙:4
+@pattern 小锣导板头 xiao-luo-dao-ban-tou
+  cat 开唱
+  meter 2
+  bpm 56 40 76
+  accel 1.0 0.85
+  use 导板入头, 旦角, 情境较平和: 坐宫 铁镜公主
+  conf ✅ B C E F
+  jing [起] 乙:4 大:2 大:2 | 台:4 台:4 | [收] 台:4 令:2 台:2 | 乙:2 令:2 台:4
+@pattern 南梆子导板头 nan-bang-zi-dao-ban-tou
+  cat 开唱
+  meter 2
+  bpm 66 48 90
+  use 南梆子导板的入头: 得意缘
+  conf ✅ B C E
+  jing [起] 乙:4 大:2 台:2 | [收] 仓:4 才:4 | 仓:4 才:4 | 顷:4 仓:4 | 多:2 罗:2 乙:4
+@pattern 慢长锤 man-chang-chui
+  cat 开唱
+  meter 4
+  bpm 60 44 80
+  reps 3
+  use 原板, 慢板, 二六的入头; 缓慢的上场, 更衣 (实测约60)
+  conf ✅ M D E B C F
+  jing [起] 乙:14 台:2 | [中] 匡:4 七:4 台:4 七:4 | [收] 匡:4 七:4 台:2 七:2 台:4 | 仓:4 令:2 才:4 台:2 仓:4 | 大:2 扑:2 台:4 仓:4 乙:4
+@pattern 快长锤 kuai-chang-chui
+  cat 开唱
+  meter 2
+  bpm 130 96 170
+  reps 4
+  use 快板, 流水, 摇板的入头; 急促的上下场, 圆场: 定军山 黄忠
+  conf ✅ D E B C F
+  jing [起] 乙:6 台:2 | [中] 匡:2 七:2 台:2 七:2 | [收] 匡:4 大:2 衣:2 | 空:4 才:4 | 仓:4 令:2 才:2 | 乙:2 台:2 仓:4
+@pattern 散长锤 san-chang-chui
+  cat 开唱
+  meter 4
+  bpm 60 44 80
+  reps 2
+  accel 0.7 1.0
+  use 撞金钟: 散板的入头, 缓慢迟疑的动作; 铙钹颤音渐快入长锤
+  conf ✅ D E B (节奏自由)
+  jing [起] 乙:8 扎:4 大:2 衣:1 台:1 | 匡:4 七~:4 台:4 七~:4 | 匡:4 七~:4 台:4 七~:4 | [中] 匡:4 七:4 台:4 七:4 | [收] 匡:4 七:4 台:2 才:2 台:4 | 仓:4 令:2 才:2 乙:2 台:2 仓:4
+@pattern 夺头 duo-tou
+  cat 开唱
+  meter 4
+  bpm 75 56 96
+  accel 1.0 0.9
+  use 原板, 慢板, 二六的入头, "胡琴过门前都用夺头": 空城计 二六 (实测约75)
+  conf ✅ M B E C F
+  jing [起] 龙:4 冬:4 大:2 大:2 大:2 台:2 | [收] 仓:4 令:2 才:4 台:2 仓:4 | 大:2 扑:2 台:4 仓:4 乙:4
+@pattern 小锣夺头 xiao-luo-duo-tou
+  cat 开唱
+  meter 4
+  bpm 77 56 96
+  accel 1.0 0.9
+  use 原板, 快三眼, 慢板, 二六的入头; 可作上场: 凤还巢, 洪洋洞 (实测约77)
+  conf ✅ M B C E F
+  jing [起] 龙:4 冬:4 大:2 大:2 大:2 令:2 | [收] 台:4 令:2 台:4 令:2 台:4 | 大:4 台:4 台:4 乙:4
+@pattern 铙钹夺头 nao-bo-duo-tou
+  cat 开唱
+  meter 4
+  bpm 75 56 96
+  use 悲剧场面的原板, 慢板, 四平调入头: 洪洋洞 杨延昭
+  conf ✅ B C F
+  jing [起] 龙:4 冬:4 大:2 大:2 大:2 台:2 | [收] 才:4 令:2 才:4 台:2 才:4 | 大:2 扑:2 台:4 才:4 乙:4
+@pattern 平板夺头 ping-ban-duo-tou
+  cat 开唱
+  meter 2
+  bpm 72 54 92
+  use 软夺头: 四平调小过门的入头 (第二小节节奏推测)
+  conf ⚠️ B C E
+  jing [起] 龙:2 冬:2 大:2 大:1 台:1 | [收] 仓:2 令:1 才:1 乙:2 才:2 | 顷:4 仓:4
+@pattern 小锣平板夺头 xiao-luo-ping-ban-duo-tou
+  cat 开唱
+  meter 2
+  bpm 72 54 92
+  use 四平调大过门的入头: 梅龙镇 李凤姐 (节奏推测)
+  conf ⚠️ B C
+  jing [起] 龙:2 冬:2 大:2 大:1 大:1 | [收] 台:2 令:1 台:1 乙:1 令:1 台:2 | 令:4 台:4
+@pattern 凤点头 feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 100 72 130
+  use 单楗凤点头: 摇板, 流水的入头 (不作上场): 打渔杀家 李俊
+  conf ✅ C E B F
+  jing [起] 乙:4 大:2 大:2 | 衣:4 衣:4 | [收] 顷:4 才:4 | 仓:4 令:2 才:2 | 乙:2 台:2 仓:4
+@pattern 双楗凤点头 shuang-jian-feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 80 56 104
+  accel 1.0 0.85
+  use 纽丝凤点头: 散板的入头: 空城计 "退司马保空城全仗此琴"
+  conf ✅ M B C E F
+  jing [起] 八:2 大:2 台:4 | 仓:3 嘟~:1 才:2 台:2 | [收] 仓:4 令:2 才:2 | 乙:2 台:2 仓:4
+@pattern 小锣凤点头 xiao-luo-feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 100 72 130
+  use 摇板, 流水的入头, 文静的场面: 捉放曹
+  conf ✅ C E B F
+  jing [起] 乙:4 大:2 大:2 | 衣:4 衣:4 | [收] 台:4 台:4 | 台:4 令:2 台:2 | 乙:2 令:2 台:4
+@pattern 一锣凤点头 yi-luo-feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 110 80 140
+  use 一锤凤点头: 流水入头并加强语气: 玉堂春
+  conf ⚠️ C B
+  jing [起] 大:2 大:2 大:2 大:2 | 衣:2 大:2 大:2 大:2 | [收] 仓:8
+@pattern 两锣凤点头 liang-luo-feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 70 50 90
+  accel 1.0 0.85
+  use 悲伤情境的散板入头: 四郎探母·别家
+  conf ⚠️ C
+  jing [起] 八:2 大:2 台:4 | [收] 顷:8 | 仓:8
+@pattern 三锣凤点头 san-luo-feng-dian-tou
+  cat 开唱
+  meter 2
+  bpm 120 90 150
+  use 硬三锤: 激动紧张时的快板入头: 斩马谡, 坐宫
+  conf ⚠️ C B
+  jing [起] 大:2 大:2 衣:2 衣:2 | [收] 仓:4 仓:4 | 仓:8
+@pattern 帽子头 mao-zi-tou
+  cat 开唱
+  meter 2
+  bpm 100 72 130
+  use 帽儿头: 念引子, 回龙及部分慢板 (反二黄慢板) 的入头: 借东风
+  conf ✅ B C E F
+  jing [起] 乙:4 台:4 | [收] 仓:4 才:4 | 仓:4 才:4 | 顷:4 仓:4 | 仓:8
+@pattern 小锣帽子头 xiao-luo-mao-zi-tou
+  cat 开唱
+  meter 2
+  bpm 70 50 90
+  use 主角第一次出场亮相, 慢板的入头: 坐宫 杨延辉
+  conf ✅ B C E F
+  jing [起] 台:4 台:4 | 台:4 台:2 大:2 | [收] 台:2 大:2 台:4 | 台:8
+@pattern 抽头 chou-tou
+  cat 开唱
+  meter 4
+  bpm 80 60 104
+  reps 2
+  use 七字锣: 接唱的二黄原板, 四平调的入头 (西皮原板不用); 摇板入头: 文昭关
+  conf ✅ D B C E F
+  jing [起] 大:2 大:2 大:2 大:2 衣:2 大:2 衣:2 台:2 | [中] 仓:4 令:2 台:2 七:2 台:2 乙:2 台:2 | [收] 仓:4 令:2 台:2 衣:2 大:2 衣:4 | 仓:3 才:1 乙:2 台:2 仓:8
+@pattern 小锣抽头 xiao-luo-chou-tou
+  cat 开唱
+  meter 4
+  bpm 84 60 108
+  reps 2
+  use 摇板, 流水, 快板的入头, 文静的上下场: 打渔杀家 萧桂英
+  conf ✅ D E C B F
+  jing [起] 大:2 大:2 大:2 大:2 衣:2 大:2 衣:2 令:2 | [中] 台:4 令:2 台:2 乙:2 台:2 乙:2 令:2 | [收] 台:4 令:2 台:2 衣:2 大:2 衣:4 | 令:2 台:2 乙:2 台:2 台:8
+@pattern 闪锤 shan-chui
+  cat 开唱
+  meter 2
+  bpm 90 66 116
+  reps 2
+  use 拗锤, 反长锤: 台上角色开唱的流水, 快板, 摇板入头: 空城计 "我用兵数十年" (实测约90)
+  conf ✅ M D E B C F
+  jing [起] 龙:4/3t 冬:4/3t 衣:4/3t 大:4/3t 衣:4/3t 台:4/3t | [中] 匡:2 台:2 才:2 台:2 | [收] 匡:2 台:2 才:2 台:2 | 匡:8
+@pattern 纽丝 niu-si
+  cat 开唱
+  meter 4
+  bpm 90 66 120
+  reps 2
+  use 散板的入头, 也配合上下场: 空城计 "人言司马善用兵"
+  conf ✅ D E B C F (起收节奏近似)
+  jing [起] 龙:4 冬:4 八:1 大:3 台:2 嘟~:2 | 仓:4 台:4 才:4 台:4 | [中] 仓:4 台:4 七:2 台:2 乙:2 台:2 | [收] 仓:2 台:2 才:4 仓:4 台:4 | 才:4 台:4 仓:4 乙:4
+@pattern 快纽丝 kuai-niu-si
+  cat 开唱
+  meter 2
+  bpm 120 90 150
+  reps 3
+  use 散板的入头, 匆忙紧迫的情境: 大保国 杨波 (推测)
+  conf ⚠️ B C
+  jing [起] 龙:2 冬:2 八:2 大:1 台:1 | 仓:2 令:2 才:4 | [中] 仓:4 才:4 | [收] 仓:2 令:2 才:2 台:2 | 仓:8
+@pattern 紧锤 jin-chui
+  cat 开唱
+  meter 1
+  bpm 180 140 220
+  reps 6
+  use 串锤: 快板的入头, 匆忙紧张: 赤桑镇 (拍号推断)
+  conf ⚠️ B E C
+  jing [起] 大:4 | 大:2 台:2 | 仓:2 才:2 | 仓:2 才:2 | [中] 仓:4 | [收] 大:2 大:2 | 衣:4 | 衣:4 | 仓:3 才:1 | 仓:4 | 仓:4
+
+# ------------------------------------------------------------------------------------------------- 收腔
+@pattern 住头 zhu-tou
+  cat 收腔
+  meter 2
+  bpm 90 66 116
+  use 歌唱的终止, 念白的段落: 玉堂春 散板结束
+  conf ✅ B E C
+  jing [起] 乙:4 大:2 台:2 | [收] 仓:4 才:4 | 仓:8
+@pattern 小锣住头 xiao-luo-zhu-tou
+  cat 收腔
+  meter 2
+  bpm 84 60 110
+  use 歌唱或念诗的结束, 配合上下场
+  conf ✅ B C
+  jing [收] 台:4 大:4 | 台:8
+@pattern 收头 shou-tou
+  cat 收腔
+  meter 2
+  bpm 90 66 116
+  use 大段唱腔后告一段落; 结束原板, 慢板: 捉放宿店, 宇宙锋
+  conf ✅ B C E F
+  jing [起] 乙:4 龙:2 冬:2 | 衣:2 大:2 衣:2 台:2 | [收] 仓:4 令:2 才:2 | 乙:2 台:2 仓:4
+@pattern 小锣收头 xiao-luo-shou-tou
+  cat 收腔
+  meter 2
+  bpm 90 66 116
+  use 小锣开唱的摇板, 原板以后: 问樵闹府
+  conf ✅ C E B F
+  jing [起] 乙:4 龙:2 冬:2 | 衣:2 大:2 衣:2 令:2 | [收] 台:4 令:2 台:2 | 乙:2 令:2 台:4
+@pattern 扫头 sao-tou
+  cat 收腔
+  meter 2
+  bpm 110 80 140
+  reps 2
+  use 末句以动作代替 (扫), 打了扫头即表示结束 (待核: 字谱单一来源)
+  conf ❓ B
+  jing [起] 乙:4 台:2 嘟~:2 | [中] 仓:4 才:4 | [收] 仓:4 才:2 嘟~:2 | 仓:2 令:2 才:2 台:2 | 仓:2 令:2 才:2 大:2 | 仓:2 乙:2 令:2 才:2 | 乙:2 令:2 仓:4
+
+# ------------------------------------------------------------------------------------------------- 念白, 散垫
+@pattern 归位 gui-wei
+  cat 念白散垫
+  meter 2
+  bpm 70 50 92
+  use 引子, 诗, 大段念白及曲牌的前奏: 空城计 定场诗
+  conf ✅ M B C
+  jing [起] 乙:4 大:2 台:2 | 仓:3 嘟~:1 才:2 台:2 | [收] 仓:4 仓:4
+@pattern 小锣归位 xiao-luo-gui-wei
+  cat 念白散垫
+  meter 1
+  bpm 100 72 130
+  use 同归位, 依人物身份: 击鼓骂曹 (暂定)
+  conf ⚠️ B C
+  jing [收] 台:4 | 大:2 大:2 | 台:2 大:2 | 台:4 | 乙:4 | 大:4 | 台:4
+@pattern 叫头 jiao-tou
+  cat 念白散垫
+  meter 2
+  bpm 90 66 116
+  reps 2
+  use 激动时的呼喊: 女起解 "天哪, 天!" (中段扎扎时念)
+  conf ✅ M B C
+  jing [起] 乙:4 八:2 大:2 | 顷:4 仓:4 | [中] 扎:4 扎:4 | [收] 八:4 大:2 八:2 | 仓:4 仓:4 | 令:4 仓:4
+@pattern 哭头 ku-tou
+  cat 念白散垫
+  meter 2
+  bpm 66 48 90
+  accel 1.0 0.85
+  use 人物哭泣, 延长的仓与哭腔交替: 斩马谡, 坐宫
+  conf ✅ C B E
+  jing [起] 乙:4 大:2 大:2 | 衣:4 衣:4 | [收] 仓:8 | 仓:8 | 仓:4 仓:4 | 仓:2 七:2 台:4 | 仓:8
+@pattern 小锣哭头 xiao-luo-ku-tou
+  cat 念白散垫
+  meter 2
+  bpm 66 48 90
+  accel 1.0 0.85
+  use 旦角及较平静的场合: 武家坡 王宝钏
+  conf ✅ B C E
+  jing [起] 乙:4 大:2 大:2 | 衣:4 衣:4 | [收] 台:8 | 台:8 | 台:4 台:4 | 台:4 令:4 | 台:8
+@pattern 撕边 si-bian
+  cat 念白散垫
+  meter 2
+  bpm 80 56 110
+  use 撕边一锣: 惊讶, 突然, 观察思考: 野猪林 林冲
+  conf ✅ M B
+  jing [起] 嘟~:8 | [收] 仓:8
+@pattern 撕开撕边 si-kai-si-bian
+  cat 念白散垫
+  meter 2
+  bpm 80 56 110
+  use 撕边一锣的撕开型
+  conf ✅ M
+  jing [起] 嘟~:4 拉:1 大:1 大:1 大:1 | [收] 仓:8
+@pattern 冷锤 leng-chui
+  cat 念白散垫
+  meter 2
+  bpm 90 66 116
+  use 一锣: 一击, 无预备
+  conf ✅ M B
+  jing [收] 仓:4 乙:4
+@pattern 八大仓 ba-da-cang
+  cat 念白散垫
+  meter 2
+  bpm 100 72 130
+  use 装饰性冷锤的扩充, 号令般的亮相节奏
+  conf ✅ M B
+  jing [起] 八:4 大:4 | [收] 仓:4 乙:4
+@pattern 两锣 liang-luo
+  cat 念白散垫
+  meter 2
+  bpm 80 56 104
+  use 两击: 加重语气, 亮相; 带板唱腔中转换板式: 盗御马, 野猪林
+  conf ✅ B M D
+  jing [起] 乙:4 八:1 大:1 台:2 | [收] 顷:4 仓:4
+@pattern 三锣 san-luo
+  cat 念白散垫
+  meter 1
+  bpm 110 80 140
+  use 三击: 配合"一二三"节奏性动作, 加强语气
+  conf ✅ B C M
+  jing [起] 八:2 大:2 | [收] 仓:4 | 仓:4 | 仓:4
+
+# ------------------------------------------------------------------------------------------------- 上下场, 亮相
+@pattern 四击头 si-ji-tou
+  cat 上下场
+  meter 2
+  bpm 100 72 130
+  use 人物上下场及亮相, 起霸中的亮相: 艳阳楼, 定军山
+  conf ✅ M B E C
+  jing [起] 乙:4 大:2 台:2 | 仓:8 | 仓:4 才:2 八:2 | 仓:4 才:4 | [收] 仓:4 乙:4
+@pattern 五击头 wu-ji-tou
+  cat 上下场
+  meter 2
+  bpm 110 80 140
+  use 五锤: 简单的上下场, 简短动作, 加强语气: 空城计 "唉!"
+  conf ✅ M B E C
+  jing [起] 乙:4 大:2 台:2 | [收] 仓:4 才:4 | 仓:4 才:4 | 仓:4 乙:4
+@pattern 小锣五击头 xiao-luo-wu-ji-tou
+  cat 上下场
+  meter 2
+  bpm 110 80 140
+  use 丑行, 反面人物, 闲适场景的上下场: 女起解 崇公道
+  conf ✅ M B C
+  jing [起] 乙:4 大:2 衣:2 | [收] 台:4 台:4 | 台:4 令:4 | 台:4 乙:4
+@pattern 软四击头 ruan-si-ji-tou
+  cat 上下场
+  meter 2
+  bpm 110 80 140
+  use 切头: 加重语气, 夺枪, 下场前的翻身, 趟马的开始
+  conf ✅ M B C
+  jing [起] 八:4 大:2 八:2 | [收] 仓:4 仓:4 | 顷:4 仓:4
+@pattern 冲头 chong-tou
+  cat 上下场
+  meter 2
+  bpm 140 100 180
+  reps 4
+  use 上下场与一般动作, 念白中加强语气 (主角第一次上场不用): 空城计 探子
+  conf ✅ M B E
+  jing [起] 八:4 嘟~:4 | [中] 仓:4 才:4 | [收] 仓:4 才:4 | 仓:4 乙:4
+@pattern 长尖 chang-jian
+  cat 上下场
+  meter 2
+  bpm 130 96 170
+  reps 4
+  use 由慢转快的动作: 群英会 众将上场
+  conf ⚠️ B D
+  jing [起] 乙:4 大:2 台:2 | 仓:2 才:2 才:2 才:2 | 才:4 才:4 | [中] 仓:4 才:4 | [收] 仓:4 才:4 | 仓:8
+@pattern 长丝头 chang-si-tou
+  cat 上下场
+  meter 2
+  bpm 140 100 180
+  reps 4
+  use 唱罢摇板之后的上下场, 代替冲头: 斩马谡 探子
+  conf ⚠️ B D
+  jing [起] 大:2 衣:2 大:2 大:2 | 仓:2 令:2 才:2 令:2 | [中] 仓:4 才:4 | [收] 仓:4 才:4 | 仓:8
+@pattern 小锣长丝头 xiao-luo-chang-si-tou
+  cat 上下场
+  meter 2
+  bpm 140 100 180
+  reps 4
+  use 较急促的上下场, 圆场: 金玉奴, 打焦赞
+  conf ❓ B
+  jing [起] 大:4 大:2 大:2 | 台:4 令:4 | [中] 台:4 令:4 | [收] 台:4 大:4 | 台:8 | 台:8
+@pattern 一锤锣 yi-chui-luo
+  cat 上下场
+  meter 2
+  bpm 120 88 150
+  reps 2
+  use 回头, 原场, 大锣打上: 老生, 花脸的缓慢上场 (后段时值推测)
+  conf ⚠️ B 王永琦
+  jing [起] 乙:6 嘟~:2 | 拉:2 大:2 大:2 台:2 | [中] 仓:2 才:2 才:2 才:2 | 台:2 才:2 才:2 才:2 | [收] 仓:2 才:2 仓:2 才:2 | 仓:2 才:2 才:4 | 仓:4 才:4 | 仓:4 才:4 | 仓:8
+@pattern 小锣原场 xiao-luo-yuan-chang
+  cat 上下场
+  meter 1
+  bpm 140 100 180
+  reps 2
+  use 小锣打上, 打下: 排场较小, 较平静的场面 (未核实)
+  conf ❓ B
+  jing [起] 多:1 罗:1 衣:2 | 台:2 大:2 | 台:4 | 台:2 大:2 | 台:4 | 台:2 大:2 | 台:2 大:2 | 台:4 | 台:4 | 台:4 | [中] 令:2 台:2 | [收] 大:2 令:2 | 台:2 令:2 | 台:4
+
+# ------------------------------------------------------------------------------------------------- 情绪, 身段
+@pattern 脆头 cui-tou
+  cat 情绪
+  meter 2
+  bpm 120 88 150
+  reps 2
+  use 羞愧, 惊怒的情感或动作 (不作上下场): 野猪林 林冲受刑后
+  conf ✅ M E B
+  jing [起] 大:2 大:2 八:2 台:2 | [中] 仓:4 仓:4 | [收] 仓:4 才:4 | 仓:4 乙:4
+@pattern 乱锤 luan-chui
+  cat 情绪
+  meter 0
+  bpm 110 80 140
+  reps 2
+  use 焦急烦躁纷乱的情绪, 每小节七下先慢后快: 空城计 "这这这…"
+  conf ⚠️ E D
+  jing [起] 大:2 大:2 八:2 台:2 | [中] 仓:2 仓:2 仓:2 仓:2 仓:4/3t 仓:4/3t 仓:4/3t | [收] 仓:4 才:4 | 仓:8
+@pattern 搓锤 cuo-chui
+  cat 情绪
+  meter 2
+  bpm 110 80 140
+  reps 2
+  use 焦急的情绪, 失常的动作: 搜孤救孤 程婴回龙后
+  conf ⚠️ B E
+  jing [起] 大:2 大:2 大:2 大:2 | 衣:2 大:2 衣:2 台:2 | 空:2 匡:2 乙:2 才:2 | 空:2 匡:2 乙:2 才:2 | [中] 匡:4 才:4 | [收] 匡:2 才:2 乙:2 才:2 | 匡:4 衣:2 大:2 | 匡:8
+@pattern 撤锣 che-luo
+  cat 情绪
+  meter 2
+  bpm 110 80 140
+  reps 3
+  accel 1.0 0.7
+  use 大换小: 大锣逐渐缓慢削弱, 再接小锣 (未核实)
+  conf ⚠️ B
+  jing [起] 大:2 八:2 大:2 八:2 | 仓:8 | 仓:4 才:4 | [中] 仓:2 令:2 才:2 台:2 | [收] 仓:2 令:2 才:2 台:2 | 仓:8
+@pattern 搜场 sou-chang
+  cat 情绪
+  meter 2
+  bpm 120 88 150
+  use 单搜场: 剧中的搜索动作: 战宛城 (未核实)
+  conf ❓ B
+  jing [起] 八:2 嘟~:2 空:2 才:2 | 仓:2 才:2 令:2 才:2 | 仓:2 才:2 令:2 仓:2 | [收] 令:2 仓:2 乙:2 才:2 | 仓:4 乙:4
+
+# ------------------------------------------------------------------------------------------------- 武打, 气氛
+@pattern 急急风 ji-ji-feng
+  cat 武打
+  meter 1
+  bpm 200 150 260
+  reps 8
+  use 急促紧张激烈及战争的情境, 上下场, 战斗 (最快, 常越打越快): 打渔杀家, 空城计 司马懿
+  conf ✅ M B E (细部节奏 ⚠️)
+  jing [起] 八:4 | 八:2 台:2 | 仓:4 | 才:4 | 仓:4 | 才:4 | [中] 仓:4 | [收] 仓:4 | 才:4 | 仓:4 | 乙:4
+@pattern 马腿儿 ma-tui-er
+  cat 武打
+  meter 3
+  bpm 160 120 200
+  reps 4
+  use 三拍子: 两人单刀对打, 泅水: 战马超, 闹天宫
+  conf ⚠️ B D W
+  jing [起] 乙:4 嘟~:4 拉:2 大:2 | 乙:2 八:2 乙:2 台:2 乙:4 | [中] 仓:2 乙:2 令:2 才:2 乙:2 令:2 | [收] 仓:4 乙:8
+@pattern 九锤半 jiu-chui-ban
+  cat 武打
+  meter 2
+  bpm 120 88 150
+  use 匆忙的动作, 紊乱的情况, 暗中的动作: 三岔口
+  conf ⚠️ B
+  jing [起] 冬:2 八:2 乙:2 嘟~:2 | [收] 空:2 仓:2 令:2 仓:2 | 乙:2 才:2 仓:2 才:2 | 令:2 仓:2 乙:2 才:2 | 仓:8
+@pattern 阴锣 yin-luo
+  cat 武打
+  meter 2
+  bpm 110 80 140
+  reps 3
+  use 暗中的或迟缓的动作 (大锣, 钹弱音): 三岔口 摸黑 (未核实)
+  conf ❓ B
+  jing [起] 八:4 大:4 | 仓:4 才:4 | 仓:4 才:4 | [中] 仓:4 台:4 | [收] 仓:4 才:4 | 仓:8 | 仓:8
+@pattern 一封书 yi-feng-shu
+  cat 武打
+  meter 2
+  bpm 100 72 130
+  reps 4
+  use 武戏中较缓慢的对打, 沉着有力: 艳阳楼
+  conf ⚠️ B D
+  jing [起] 大:4 八:4 | 大:2 八:2 大:2 八:2 | [中] 仓:4 才:4 | [收] 仓:4 才:4 | 仓:4 才:4 | 仓:8
+@pattern 水底鱼 shui-di-yu
+  cat 武打
+  meter 2+3
+  bpm 130 96 170
+  use 行路时匆忙急促的步伐 (2/4+3/4, 后段推测): 望江亭
+  conf ⚠️ B E W
+  jing [起] 乙:4 大:2 台:2 | 仓:4 才:4 | 仓:2 嘟~:2 令:2 才:2 | 仓:2 大:1 八:1 令:2 才:2 令:2 才:2 | 乙:2 令:2 仓:2 大:1 八:1 | 令:2 才:2 乙:2 令:2 | 仓:2 大:1 八:1 令:2 才:2 乙:1 八:1 乙:2 | 仓:2 乙:2 令:2 才:2 乙:2 令:2 | [收] 仓:8
+@pattern 扑灯蛾 pu-deng-e
+  cat 武打
+  meter 4
+  bpm 120 88 150
+  reps 2
+  use 干念牌子, 配合念数板: 狮子楼 (未核实)
+  conf ❓ B
+  jing [起] 乙:8 冬:2 八:2 乙:2 台:2 | [中] 仓:2 乙:2 台:2 台:2 七:2 台:2 乙:2 台:2 | [收] 空:4 匡:4 扎:4 扎:4
+@pattern 加饽饽 jia-bo-bo
+  cat 武打
+  meter 2
+  bpm 140 100 180
+  reps 3
+  use 劈杆: 开打锣鼓 (未核实)
+  conf ❓ B
+  jing [起] 大:2 八:2 大:2 八:2 | [中] 仓:4 才:2 才:2 | [收] 仓:4 才:4 | 仓:4 乙:4
+
+# ------------------------------------------------------------------------------------------------- 板眼
+# kept while the player sings (the research's 2.3: the 板 struck on every 板; the 眼 by the drum only if asked for:
+# * marks those strokes)
+@pattern 板眼一拍 ban-yan
+  cat 板眼
+  meter 1
+  bpm 138 100 200
+  use 有板无眼: 每拍一板
+  zhong 扎:4 |
+@pattern 板眼二拍 ban-yan
+  cat 板眼
+  meter 2
+  bpm 80 50 120
+  use 一板一眼: 板击檀板, 眼可加鼓
+  zhong 扎:4 多*:4 |
+@pattern 板眼四拍 ban-yan
+  cat 板眼
+  meter 4
+  bpm 56 40 80
+  use 一板三眼: 板, 头眼, 中眼, 末眼
+  zhong 扎:4 多*:4 多*:4 多*:4 |

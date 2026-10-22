@@ -1,0 +1,59 @@
+# LUOGU's screens: the 唱腔 page stopped (what the 板式 is for, the 大过门's opening), the singer's cue, a 4/4 过门,
+# a 散板's 过门, and on the 锣鼓 page a long 字谱 scrolling as it plays
+wait 1500
+tap HOME
+wait 300
+expect page 1
+shot ui_sing_idle.png
+tap PLAY
+wait 21500
+expect seg 2
+shot ui_kaichang.png
+press PLAY
+wait 700
+release PLAY
+wait 3000
+expect state 0
+# 南梆子 (4/4, its 大过门 opening on a held 3 with a grace 5), stopped
+spin ALGO 10
+wait 300
+expect bs 10
+shot ui_nanbangzi.png
+tap PLAY
+wait 12000
+shot ui_nanbangzi_guomen.png
+press PLAY
+wait 700
+release PLAY
+wait 3000
+# 二黄导板: the 导板头, then the 导板过门 in free time
+spin ALGO 4
+wait 300
+expect bs 14
+tap PLAY
+wait 8000
+expect seg 2
+shot ui_daoban.png
+press PLAY
+wait 700
+release PLAY
+wait 3000
+expect state 0
+# the 锣鼓 page: 水底鱼, 39 strokes, more rows than the screen has
+tap HOME
+wait 300
+expect page 0
+spin ALGO 61
+wait 300
+expect pat 61
+shot ui_shuidiyu.png
+tap PLAY
+wait 6500
+shot ui_shuidiyu_playing.png
+press PLAY
+wait 700
+release PLAY
+wait 3000
+expect state 0
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

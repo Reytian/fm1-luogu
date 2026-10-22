@@ -1,0 +1,135 @@
+# LUOGU's 跟练 (FX): in a 锣鼓经 the time follows the player's strokes: it waits at each till its key (a wrong one
+# doesn't move it), and a key struck early for the next one moves it on to that one at once; the 字谱 lighting as it
+# goes. Stopped, the first stroke's key starts it (a wrong one starts nothing). A key struck in a section's rest is for
+# the next section's first. On the 唱腔 page a 板式's 过门 comes in only once its lead-in has been played.
+# 凤点头 at 100: 起 大 0 ms, 大 300, 衣 600, 衣 1200, its end 1800; 收 顷 0, 才 600 (its event 3: the drum's fills
+# count). (tapkey takes 90 ms: the key down 60, up 30)
+# Keys: 大 4 (A3), 衣 1 (#F3), 台 16 (A4), 令 17 (#A4), 仓 19 (C5), 顷 20 (#C5), 才 21 (D5)
+# every stroke 跟练 can wait for has a key, whatever the 乐器
+expect keyless 0
+wait 1500
+tap FX
+wait 200
+expect kara 1
+spin ALGO 11
+wait 300
+expect pat 11
+wait 1200
+shot kara_idle.png
+# stopped: a wrong key starts nothing; the first stroke's key (大) starts the run, struck
+tapkey 16
+wait 300
+expect state 0
+tapkey 4
+expect state 1
+expect khits 1
+expect ev 0
+# the second 大 (at 300 ms) not struck: the time waits at it; a wrong key there doesn't move it
+wait 400
+expect want 1
+expect wait 1
+tapkey 16
+wait 300
+expect want 1
+expect wait 1
+expect kmiss 1
+# 大: on; and 衣 (at 600) struck straight after, 210 ms early: the time moves on to it at once
+tapkey 4
+tapkey 1
+wait 30
+expect ev 2
+expect wait 0
+expect khits 3
+# slow again: the last 衣 (600 ms after the one before) not struck, the time waits at it
+wait 700
+expect want 3
+expect wait 1
+wait 600
+shot kara_half.png
+# 衣: on; then 顷 struck in the rest at 起's end, 300 ms before 收: 收's first, passed when 收 begins
+tapkey 1
+wait 210
+tapkey 20
+expect sec 0
+expect khits 4
+wait 400
+expect sec 2
+expect ev 0
+expect wait 0
+expect khits 5
+# 才 (600 ms into 收) not struck: the time waits; a wrong key there is wrong, and it stays
+wait 600
+expect want 3
+expect wait 1
+tapkey 19
+wait 300
+expect want 3
+expect wait 1
+expect kmiss 2
+press PLAY
+wait 700
+release PLAY
+wait 2000
+expect state 0
+# 西皮流水 on the 唱腔 page, started by striking its lead-in's (凤点头's) first 大: the lead-in is the player's, then
+# the 京胡
+tap HOME
+wait 300
+spin ALGO 6
+wait 300
+expect bs 6
+wait 1200
+shot kara_sing_idle.png
+tapkey 4
+expect seg 1
+expect khits 1
+wait 400
+tapkey 4
+wait 500
+tapkey 1
+wait 600
+tapkey 1
+wait 1200
+expect seg 1
+expect wait 1
+shot kara_leadin.png
+tapkey 20
+wait 600
+tapkey 21
+wait 600
+tapkey 19
+wait 600
+tapkey 17
+wait 400
+tapkey 21
+wait 700
+tapkey 16
+wait 400
+tapkey 19
+wait 1500
+expect seg 2
+expect khits 11
+shot kara_guomen.png
+press PLAY
+wait 700
+release PLAY
+wait 1000
+expect state 0
+# 跟练 turned off (FX) while it waits in the lead-in: no wait, the lead-in plays on by itself into the 过门
+tap PLAY
+wait 800
+expect wait 1
+shot kara_sing_wait.png
+tap FX
+wait 300
+expect kara 0
+expect wait 0
+wait 5000
+expect seg 2
+press PLAY
+wait 700
+release PLAY
+wait 1000
+expect state 0
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

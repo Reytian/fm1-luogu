@@ -1,0 +1,57 @@
+# LUOGU's 唱段 (tq_data.h: run only when this build has them): on the 唱腔 page PRESET goes to the 唱段, the first
+# 苏三离了洪洞县 (西皮流水, 84): PLAY gives its 锣鼓 (凤点头), its 京胡 (the 过门, then the 托腔 as she sings, the
+# lyrics lit syllable by syllable), and PLAY again closes it at the next 板 with 住头.
+wait 1500
+tap HOME
+wait 300
+expect page 1
+# ALGO stays in its group (PRESET's): back from the first 板式 to the last 板式, not to a 唱段
+expect bs 0
+spin ALGO -1
+wait 300
+expect bs 17
+spin ALGO 1
+wait 300
+expect bs 0
+spin SELECT 2
+wait 300
+expect bs 0
+spin PRESET 1
+wait 300
+expect bs 18
+spin ALGO -1
+wait 300
+expect bs 22
+spin ALGO 1
+wait 300
+expect bs 18
+expect zhmiss 0
+wait 1200
+shot tq_idle.png
+tap PLAY
+wait 2000
+expect state 2
+expect seg 1
+expect tq 0
+wait 3500
+expect seg 2
+expect tqsyl -1
+shot tq_guomen.png
+wait 6000
+expect seg 2
+shot tq_singing.png
+wait 3000
+shot tq_singing2.png
+tap PLAY
+wait 1500
+expect seg 1
+wait 3000
+expect state 0
+# the next 唱段: 我本是卧龙岗散淡的人, 西皮快三眼 then 原板, 老生
+spin ALGO 1
+wait 300
+expect bs 19
+wait 1200
+shot tq_idle2.png
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

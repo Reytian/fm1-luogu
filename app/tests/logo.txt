@@ -1,0 +1,27 @@
+# LUOGU's logo: the intro after the splash (the rings running out across the gong, frame by frame), the page after
+# it; then at a reboot, a key ends the intro at once
+wait 40
+expect intro 1
+shot logo_0.png
+wait 160
+shot logo_1.png
+wait 200
+shot logo_2.png
+wait 200
+shot logo_3.png
+wait 200
+shot logo_4.png
+wait 200
+shot logo_5.png
+wait 300
+expect intro 0
+expect page 0
+shot logo_after.png
+reboot
+wait 200
+expect intro 1
+tapkey 7
+wait 100
+expect intro 0
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

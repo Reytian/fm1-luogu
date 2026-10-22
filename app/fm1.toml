@@ -1,0 +1,16 @@
+# LUOGU's build settings (fm1-base tools/build.py)
+name = "LUOGU"                 # APP_NAME is in app.h; this names the build's files
+id_prefix = "FM-1_53"          # package identity: dev FM-1_5300, releases FM-1_53XXYYZZ (the 5s are Reytian's: MIN-1 5, TRIO 52)
+usb_manufacturer = "LUOGU"
+usb_product = "LUOGU FM-1"
+include = ["dsp"]
+o2 = ["dsp/lg.c", "dsp/perc.c", "dsp/hu.c"]   # the engine and the instruments: -O2
+words = "words.tsv"
+ble = false                    # no Bluetooth (the keys, USB MIDI and the TRS jack)
+usb_audio_in = true            # LUOGU recordable over USB
+usb_audio_out = false
+# the site (tools/make_site.py)
+tagline = "the 锣鼓经 of Peking opera and the 京胡's 过门: learn the percussion, sing to it"
+repo = "https://github.com/Reytian/fm1-luogu"
+licence = "MPL-2.0"
+credits = "Built on fm1-base by Charles Vestal and felucca-bsp by Leo Kuroshita. The percussion's sound was measured in the Beijing Opera Percussion Instrument dataset (Ajay Srinivasamurthy et al., CC BY). Chinese text in Noto Sans SC and LXGW WenKai (SIL OFL 1.1)."

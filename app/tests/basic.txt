@@ -1,0 +1,67 @@
+# LUOGU in the host simulator: the 锣鼓 page (a pattern played and cut), the 唱腔 page (a 板式 sung to: the lead-in,
+# the 大过门, the 板眼, a 小过门 cued, the ending), the mix page, and a practice run with nobody striking
+wait 1500
+shot start.png
+expect page 0
+expect pat 0
+spin ALGO 56
+wait 300
+expect pat 56
+# SELECT chooses nothing (ALGO does; PRESET the kind)
+spin SELECT 3
+wait 300
+expect pat 56
+shot jijifeng.png
+tap PLAY
+wait 2000
+expect state 1
+shot jijifeng_playing.png
+tap PLAY
+wait 2500
+expect state 0
+# the 唱腔 page: 西皮原板
+tap HOME
+wait 300
+expect page 1
+expect bs 0
+shot sing.png
+tap PLAY
+wait 3000
+expect state 2
+expect seg 1
+shot sing_leadin.png
+wait 9000
+expect seg 2
+shot sing_guomen.png
+wait 12000
+expect seg 3
+shot sing_singing.png
+tap SEQ
+wait 2500
+expect seg 2
+shot sing_cue.png
+tap PLAY
+wait 30000
+expect state 0
+# the mix page
+tap GLO
+wait 300
+shot mix.png
+tap GLO
+wait 300
+# a practice run: 乐器 大锣, nobody strikes: every stroke owed is missed
+tap HOME
+wait 300
+spin ALGO -14
+wait 200
+turn K2 2
+wait 200
+expect mine 3
+tap REC
+wait 6000
+expect state 0
+expect miss >0
+expect good 0
+shot practice.png
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

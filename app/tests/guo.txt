@@ -1,0 +1,72 @@
+# LUOGU's 彩蛋 (guo_pic.h and guo_snd.h: run only when this build has them): on the 唱腔 page with 西皮慢板, LFO twice
+# brings in 郭德纲 and 于谦 as they stood in their 《黄鹤楼》; F5 sings his 包, G5 his 肉包, each with a bubble over his
+# cap; the other keys strike as ever; LFO twice again, or HOME, and they are gone.
+wait 1500
+tap HOME
+wait 300
+expect page 1
+# not from another 板式 (西皮原板 here)
+tap LFO
+wait 150
+tap LFO
+wait 300
+expect guo 0
+spin ALGO 1
+wait 300
+spin ALGO 1
+wait 300
+expect bs 2
+# twice, but too far apart: nothing
+wait 700
+tap LFO
+wait 900
+tap LFO
+wait 900
+expect guo 0
+tap LFO
+wait 150
+tap LFO
+wait 300
+expect guo 1
+wait 1500
+shot guo.png
+tapkey 24
+wait 200
+expect say 0
+expect bubble 0
+shot guo_bao.png
+wait 1500
+expect say -1
+expect bubble -1
+tapkey 26
+wait 300
+expect say 1
+expect bubble 1
+shot guo_roubao.png
+wait 1500
+expect bubble -1
+# a key of the 锣鼓's (F3 扎) still strikes: no clip
+tapkey 0
+wait 200
+expect say -1
+# out again; and in, then out with the page
+tap LFO
+wait 150
+tap LFO
+wait 300
+expect guo 0
+tap LFO
+wait 150
+tap LFO
+wait 300
+expect guo 1
+tap HOME
+wait 300
+expect page 0
+expect guo 0
+# F5 on the 锣鼓 page: its own syllable, no clip
+tapkey 24
+wait 200
+expect say -1
+# every character on every screen it showed drawn from a font (none as '?')
+expect zhmiss 0

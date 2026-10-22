@@ -1,0 +1,12 @@
+app/build/
+build/
+tools/__pycache__/
+# the 唱段: made by tools/tq_data.py from the Jingju Music Scores Collection (CC BY-NC-ND), the owner's own
+app/dsp/tq_data.h
+# the 郭德纲模式 (a 彩蛋): made by tools/guo.py from 德云社's recording of 《黄鹤楼》, the owner's own
+app/guo_pic.h
+app/dsp/guo_snd.h
+# a crashed tool's core dump (the emulated JieLi clang)
+core
+# the 郭德纲模式's generator: draws two real people and packs 德云社's recording, the owner's own
+tools/guo.py
