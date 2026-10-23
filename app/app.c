@@ -648,7 +648,7 @@ static void key_down(int k, uint32_t vel, int sounded, uint32_t now)
         lg_cmd(LG_NOTE, (uint32_t)key_midi(k), 0, vel);
         ui.note_shown = (k + 5) % 12;            /* the key's place from C: its 简谱 (F3 is key 0) */
         ui.note_at = now;
-        ui.redraw |= 4u;
+        ui.redraw |= 6u;                         /* (the note in the title strip) */
         return;
     }
     ui.redraw |= 4u;
@@ -993,7 +993,12 @@ static void draw_header(void)
     cv_blit(0, 0);
 }
 
-/* the title strip: the pattern's (or the 板式's) name, its kind and meter */
+/* a note's 简谱 by its place from C: its digit, and the sharp or flat before it (the 过门's, the keys') */
+static const char *const JP_DIGIT[12] = {"1", "1", "2", "2", "3", "4", "4", "5", "5", "6", "7", "7"};
+static const char *const JP_ACC[12] = {0, "#", 0, "#", 0, 0, "#", 0, "#", 0, "b", 0};
+
+/* the title strip: the pattern's (or the 板式's) name, its kind and meter; on the 唱腔 page, the keys' last note when
+ * they play a 京胡 or the like (top right: nothing else is there, playing or not) */
 static void draw_title(void)
 {
     char t[40];
@@ -1043,6 +1048,15 @@ static void draw_title(void)
             text_cat(t, b->name);
             text_cat(t, T_("】"));
             zh_text_c(120, 20, &ZT, t, C_GOLD);
+            if (lg_set.keys_inst != LG_KEYS_LUOGU && ui.note_shown >= 0) {
+                t[0] = 0;
+                text_cat(t, KEYS_NAME[lg_set.keys_inst]);
+                text_cat(t, " ");
+                if (JP_ACC[ui.note_shown])
+                    text_cat(t, JP_ACC[ui.note_shown]);
+                text_cat(t, JP_DIGIT[ui.note_shown]);
+                zh_text_r(232, 0, &ZM, t, C_GOLD);
+            }
         }
     } else {
         zh_text_c(120, 20, &ZT, ui.mix_row == 0 ? T_("武场") : ui.mix_row == 1 ? T_("文场") : T_("其他"), C_GOLD);
@@ -1136,8 +1150,6 @@ static int32_t luogu_runs(const lg_pat_t *p, int live, int32_t y, int draw, int3
 /* a 过门's 简谱: the digit (0 a rest), a sharp or flat small at its upper left, the octave's dots (above, or below
  * the lines), the length's lines under it (one an eighth, two a sixteenth, three a thirty-second; joined within a
  * beat), a dot after a dotted note, a dash for each beat more; a grace note small before it; the bar lines */
-static const char *const JP_DIGIT[12] = {"1", "1", "2", "2", "3", "4", "4", "5", "5", "6", "7", "7"};
-static const char *const JP_ACC[12] = {0, "#", 0, "#", 0, 0, "#", 0, "#", 0, "b", 0};
 
 static int jp_lines(uint32_t len) { return len >= LG_TPB ? 0 : len >= LG_TPB / 2 ? 1 : len >= LG_TPB / 4 ? 2 : 3; }
 static int jp_dotted(uint32_t len)
@@ -1484,15 +1496,6 @@ static void draw_sing(void)
             text_cat(t, JP_DIGIT[lg_now.cue_pc % 12]);
             zh_text(70, 62, &ZS, t, C_GOLD);
         }
-    }
-    if (lg_set.keys_inst != LG_KEYS_LUOGU && ui.note_shown >= 0 && lg_now.seg != SEG_GM) {   /* the key's 简谱 */
-        t[0] = 0;
-        text_cat(t, KEYS_NAME[lg_set.keys_inst]);
-        text_cat(t, " ");
-        if (JP_ACC[ui.note_shown % 12])
-            text_cat(t, JP_ACC[ui.note_shown % 12]);
-        text_cat(t, JP_DIGIT[ui.note_shown % 12]);
-        zh_text_r(234, 62, &ZM, t, C_GOLD);
     }
 }
 
