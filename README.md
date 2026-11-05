@@ -33,8 +33,8 @@ percussion by playing along, or sing an aria with its own band. Everything runs 
   strike its key, and moves straight on when you strike the next one early; the 字谱 turns from dark to yellow as
   you go, and in a 板式 the 京胡's 过门 starts only once you have played the lead-in right.
 
-**Status: [1.0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v1.0.1) is the current release** (an image of
-576 KB). It runs on an FM-1; most of the testing has been in fm1-base's host simulator, which
+**Status: [1.0.2](https://github.com/Reytian/fm1-luogu/releases/tag/v1.0.2) is the current release** (an image of
+581 KB). It runs on an FM-1; most of the testing has been in fm1-base's host simulator, which
 runs the same code. The audio load is estimated from
 instruction counts at no more than 35 % of a core in its busiest 2.9 ms block, under the 60 % budget; it hasn't been
 measured on the chip.
@@ -91,9 +91,15 @@ LUOGU is an fm1-base firmware: fm1-base is a git submodule in `base/`.
 
 The build needs a Python 3 with Pillow (`PYTHON=...` picks one), the JieLi toolchain and JieLi's AC79 SDK. For
 details, see fm1-base's README. To install a build: `python3 base/tools/fm1_install.py app/build/luogu.fwsc`. To
-install the release, download `luogu-1.0.1.fwsc` from [Releases](https://github.com/Reytian/fm1-luogu/releases) and
-run `python3 base/tools/fm1_install.py luogu-1.0.1.fwsc` in a clone (the installer needs mido with python-rtmidi).
+install the release, download `luogu-1.0.2.fwsc` from [Releases](https://github.com/Reytian/fm1-luogu/releases) and
+run `python3 base/tools/fm1_install.py luogu-1.0.2.fwsc` in a clone (the installer needs mido with python-rtmidi).
 Installing is at your own risk; M-VAVE's own firmware can be put back the same way.
+
+**Newer FM-1s.** Units sold since autumn 2026 (mostly AliExpress) carry another flash chip, the UC25HQ80 (ID
+0xB36014). LUOGU knows it from 1.0.2. On such a unit earlier versions kept their saves in RAM, gone at power-off, and
+refused every update, so nothing could be installed over them. The FM-1 itself is fine, but installing again won't
+help: [the hub's rescue page](https://thefirmwarehub.com/tools/rescue/#chip) shows how to put a firmware back through
+the chip's download mode. 1.0.2 hasn't been tried on such a unit yet; reports are welcome.
 
 | Path | What |
 | --- | --- |
@@ -150,12 +156,17 @@ M-VAVE and FM-1 are trademarks of their owners. LUOGU is not affiliated with M-V
 - **跟练**（FX）：音乐跟着你走。锣鼓经的每个字等你打对了才往下走，打对一个字变黄一个；你提前打对下一个字，音乐马上
   跳过去接着走。停着的时候打第一个字就开始。唱腔里开唱的锣鼓经打对了，京胡才进来拉过门。
 
-**现状：已发布 [1.0.1](https://github.com/Reytian/fm1-luogu/releases/tag/v1.0.1)**（固件 576 KB）。已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的是同一份代码。音频负载按指令数
+**现状：已发布 [1.0.2](https://github.com/Reytian/fm1-luogu/releases/tag/v1.0.2)**（固件 581 KB）。已经在 FM-1 实机上跑；大部分测试在 fm1-base 的模拟器里完成，和实机跑的是同一份代码。音频负载按指令数
 估算，最忙的 2.9 毫秒音频块不超过一个核的 35%（预算 60%），还没在芯片上实测。
 
-**安装**：从 [Releases](https://github.com/Reytian/fm1-luogu/releases) 下载 `luogu-1.0.1.fwsc`，USB 连上 FM-1，在本仓库的
-克隆里运行 `python3 base/tools/fm1_install.py luogu-1.0.1.fwsc`（要先装 mido 和 python-rtmidi）。风险自负；M-VAVE
+**安装**：从 [Releases](https://github.com/Reytian/fm1-luogu/releases) 下载 `luogu-1.0.2.fwsc`，USB 连上 FM-1，在本仓库的
+克隆里运行 `python3 base/tools/fm1_install.py luogu-1.0.2.fwsc`（要先装 mido 和 python-rtmidi）。风险自负；M-VAVE
 原厂固件也能用同样的方法刷回去。
+
+**新批次的 FM-1。** 2026 年秋天以后卖出的机器（大多来自速卖通）换了一颗闪存芯片 UC25HQ80（ID 0xB36014）。LUOGU 从
+1.0.2 起认识它。在这种机器上，之前的版本保存只留在内存里，关机就没了，而且拒绝一切更新，什么固件都装不上去。机器本身
+没坏，但反复重装没有用：按 [The Firmware Hub 的救援页](https://thefirmwarehub.com/tools/rescue/#chip)，通过芯片的下载模式
+写入固件。1.0.2 还没有在这种机器上试过，欢迎反馈。
 
 锣鼓经和过门都是传统的，取自打击乐简谱、教材和过门谱，并且相互核对过（来源见 [CREDITS.md](CREDITS.md)）。64 套
 锣鼓经里 39 套有两种以上独立记谱互相印证（`data/luogu.txt` 里标 ✅），18 套只有一个来源或细节未定（⚠️），7 套存疑
